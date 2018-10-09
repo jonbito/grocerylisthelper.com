@@ -14,11 +14,11 @@
   <div style="display: flex;flex-direction: row;margin-top:20px;justify-content: space-evenly;">
     <div style="display:flex; flex-direction: row; justify-content: space-evenly;flex:50%;">
         <button class="btn" (click)="print()">Print</button>
-        <button class="btn-outline" (click)="export()">Export</button>
+        <button class="btn-outline" (click)="export()">Save</button>
     </div>
     <div style="display:flex; flex-direction: row; justify-content: space-evenly;flex:50%;">
         <div class="upload-file-wrapper">
-            <button class="btn-outline" (click)="importClicked(fileUpload)">Import</button>
+            <button class="btn-outline" (click)="importClicked(fileUpload)">Load</button>
             <input type="file" #fileUpload style="display:none;" (change)="import($event)" />
         </div>
     </div>
