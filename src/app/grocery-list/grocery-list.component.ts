@@ -140,4 +140,12 @@ export class GroceryListComponent implements OnInit {
     fileInput.click();
   }
 
+  // clears the fields
+  clear() {
+    this.items = [
+      { item: '', amount: '' },
+      { item: '', amount: '' }
+    ]
+  }
+
 }
