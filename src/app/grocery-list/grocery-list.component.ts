@@ -84,8 +84,9 @@ export class GroceryListComponent implements OnInit {
 
   // export creates a text file that can be used to save the list for a later import
   export() {
-    // map our item array into a string
-    let text = "";
+    // map our item array into a string.
+    // prepend our string with a super secret byte sequence so that other files cannot be read mistakenly
+    let text = "\xAA\xF3\x23\x14\x99\x78\xA2\x66";
     this.items.forEach(element => {
       if (element.item) {
         text += `${element.amount}\t${element.item}\n`;
@@ -107,8 +108,15 @@ export class GroceryListComponent implements OnInit {
       fr.onload = (e: any) => {
         let text = e.target.result;
 
+        // verify our file
+        let verifyText = text.split("\x66");
+        if(verifyText[0] != "\xAA\xF3\x23\x14\x99\x78\xA2") {
+          console.log("file verification failed.");
+          return;
+        }
+
         // split by our \n delimiter. each line is an item
-        let lines = text.split('\n');
+        let lines = verifyText[1].split('\n');
         let items = [];
         lines.forEach(l => {
           // split by \t: to the left is amount, to the right is the item name
